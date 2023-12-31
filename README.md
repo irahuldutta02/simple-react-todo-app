@@ -1,3 +1,3 @@
-# simple-todo-react
+# simple-react-todo-app
 
 ### Live at: https://simple-react-todo-app-rdtech2002.vercel.app/
