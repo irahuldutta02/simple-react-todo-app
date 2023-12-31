@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Yatra+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Yatra One", cursive;
+}
+
+.main {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+.main .title h1 {
+  text-align: center;
+  margin: 1rem 0;
+  font-family: "Rubik Doodle Shadow", cursive;
+}
+
+.add-todo {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.add-todo input {
+  width: 60%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 2px solid #f1356d;
+  border-radius: 0.5rem;
+  outline: none;
+  box-shadow: 2px 2px 0px #f1356d;
+}
+
+.main button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  border: 2px solid #f1356d;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.main button:hover {
+  background-color: #f1356d;
+  color: white;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.todo-done {
+  text-decoration: line-through;
+}
+
+.todo-item {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  border: 2px solid #f1356d;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.todo-data input {
+  width: 100%;
+  padding: 0.2rem;
+  font-size: 1rem;
+  border: 2px solid #f1356d;
+  outline: none;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 0px #f1356d;
+}
+
+.todo-data {
+  width: 100%;
+}
+
+.btnSDiv {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
