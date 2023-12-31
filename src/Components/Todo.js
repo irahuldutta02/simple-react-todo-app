@@ -10,7 +10,7 @@ function Todo(props) {
   const [inputText, setInputText] = useState("");
 
   function deleteTodo(id) {
-    let remainingTodos = todoItems.filter((todo) => todo.id != id);
+    let remainingTodos = todoItems.filter((todo) => todo.id !== id);
     setTodoItems(remainingTodos);
   }
 
