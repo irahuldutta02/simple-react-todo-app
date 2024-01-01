@@ -36,7 +36,7 @@
   border: 2px solid #f1356d;
   border-radius: 0.5rem;
   outline: none;
-  box-shadow: 2px 2px 0px #f1356d;
+  box-shadow: 2px 2px 0px black;
 }
 
 .main button {
@@ -47,11 +47,18 @@
   border: 2px solid #f1356d;
   background-color: white;
   transition: all 0.3s ease;
+  box-shadow: 2px 2px 0px #f1356d;
+  width: 5rem;
+}
+
+.add-todo button {
+  width: 7rem;
 }
 
 .main button:hover {
   background-color: #f1356d;
   color: white;
+  box-shadow: 2px 2px 0px black;
 }
 
 .todo-list {
@@ -79,6 +86,11 @@
   padding: 1rem;
   border-radius: 0.5rem;
   font-size: 1.5rem;
+  box-shadow: 2px 2px 0px #f1356d;
+}
+
+.todo-data {
+  height: 3rem;
 }
 
 .todo-data input {
@@ -88,7 +100,7 @@
   border: 2px solid #f1356d;
   outline: none;
   border-radius: 0.5rem;
-  box-shadow: 2px 2px 0px #f1356d;
+  box-shadow: 2px 2px 0px black;
 }
 
 .todo-data {

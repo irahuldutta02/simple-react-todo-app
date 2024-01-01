@@ -24,7 +24,14 @@ function Todo(props) {
 
   function generateId(todoItems) {
     if (todoItems.length === 0) return 1;
-    return (todoItems[todoItems.length - 1].id + 1);
+    return todoItems[todoItems.length - 1].id + 1;
+  }
+
+  function addNewToDo(inputText) {
+    if (inputText === "") return;
+    let newTodo = { data: inputText, id: generateId(todoItems) };
+    setTodoItems([...todoItems, newTodo]);
+    setInputText("");
   }
 
   return (
@@ -37,23 +44,17 @@ function Todo(props) {
           type="text"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") addNewToDo(inputText);
+          }}
         />
-        <button
-          onClick={() =>
-            setTodoItems([
-              ...todoItems,
-              { data: inputText, id: generateId(todoItems) },
-            ])
-          }
-        >
-          Add ToDo
-        </button>
+        <button onClick={() => addNewToDo(inputText)}>Add ToDo</button>
       </div>
       <ul className="todo-list">
         {todoItems.map((todo) => (
           <TodoItem
             todo={todo}
-            key={todo.id} // id: 1
+            key={todo.id}
             delete={() => deleteTodo(todo.id)}
             edit={(newTodo) => editTodo(todo.id, newTodo)}
           />
