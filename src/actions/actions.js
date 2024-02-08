@@ -1,4 +1,4 @@
-import { ADD_TODO } from "../constants/constants";
+import { ADD_TODO, DELETE_TODO, EDIT_TODO } from "../constants/constants";
 
 export const addToDo = (todo) => {
   return {
@@ -7,16 +7,19 @@ export const addToDo = (todo) => {
   };
 };
 
-export const deleteToDo = (toDoId) => {
+export const deleteToDo = (id) => {
   return {
-    type: "DELETE_TODO",
-    payload: toDoId,
+    type: DELETE_TODO,
+    payload: id,
   };
 };
 
-export const editToDo = (todo) => {
+export const editToDo = (id, todoData) => {
   return {
-    type: "EDIT_TODO",
-    payload: todo,
+    type: EDIT_TODO,
+    payload: {
+      id,
+      data: todoData
+    },
   };
 };

@@ -1,31 +1,26 @@
 import { useState } from "react";
 import TodoItem from "./TodoItem";
+import { useSelector, useDispatch } from "react-redux";
+import { addToDo, deleteToDo, editToDo } from "../actions/actions";
 
 function Todo() {
-  const [todoItems, setTodoItems] = useState([
-    { data: "Buy Milk", id: crypto.randomUUID() },
-    { data: "Buy Bread", id: crypto.randomUUID() },
-    { data: "Buy Butter", id: crypto.randomUUID() },
-  ]);
+  const todoItems = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+
   const [inputText, setInputText] = useState("");
 
   function deleteTodo(id) {
-    let remainingTodos = todoItems.filter((todo) => todo.id !== id);
-    setTodoItems(remainingTodos);
+    dispatch(deleteToDo(id));
   }
 
-  function editTodo(id, newTodo) {
-    let updatedTodos = todoItems.map((todo) => {
-      if (todo.id === id) todo.data = newTodo;
-      return todo;
-    });
-    setTodoItems(updatedTodos);
+  function editTodo(id, newTodoData) {
+    dispatch(editToDo(id, newTodoData));
   }
 
   function addNewToDo(inputText) {
     if (inputText === "") return;
     let newTodo = { data: inputText, id: crypto.randomUUID() };
-    setTodoItems([newTodo, ...todoItems]);
+    dispatch(addToDo(newTodo));
     setInputText("");
   }
 
@@ -51,7 +46,7 @@ function Todo() {
             todo={todo}
             key={todo.id}
             delete={() => deleteTodo(todo.id)}
-            edit={(newTodo) => editTodo(todo.id, newTodo)}
+            edit={(newTodoData) => editTodo(todo.id, newTodoData)}
           />
         ))}
       </ul>
