@@ -13,7 +13,9 @@ function TodoItem(props) {
             onChange={(e) => setTodoData(e.target.value)}
           />
         ) : (
-          <span className="todo-data-text">{props.todo.id} : {props.todo.data}</span>
+          <span className="todo-data-text">
+            {props.todo.id} : {props.todo.data}
+          </span>
         )}
       </div>
 

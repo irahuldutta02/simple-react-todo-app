@@ -14,6 +14,7 @@ https://github.com/irahuldutta02/simple-react-todo-app/assets/78687135/1391de30-
 ### 1. Clone the repo 
 ```bash
 git clone https://github.com/irahuldutta02/simple-react-todo-app.git
+cd simple-react-todo-app
 ```
 ### 2. Install dependencies
 
@@ -23,7 +24,7 @@ npm install
 ### 3. Start the development server
 
 ```bash
-npm start
+npm run dev
 ```
 
 ## Tech Stack

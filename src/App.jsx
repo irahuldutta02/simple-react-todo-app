@@ -1,3 +1,4 @@
+import {} from "react";
 import "./App.css";
 import Todo from "./Components/Todo";
 
@@ -8,11 +9,11 @@ function App() {
     { data: "todo3", id: 213 },
   ];
   return (
-    <div className="App">
+    <>
       <main>
         <Todo todoList={todos} />
       </main>
-    </div>
+    </>
   );
 }
 
