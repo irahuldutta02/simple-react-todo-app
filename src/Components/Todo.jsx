@@ -1,11 +1,11 @@
 import { useState } from "react";
 import TodoItem from "./TodoItem";
 
-function Todo(props) {
+function Todo() {
   const [todoItems, setTodoItems] = useState([
-    { data: "Buy Milk", id: 1 },
-    { data: "Buy Bread", id: 2 },
-    { data: "Buy Butter", id: 3 },
+    { data: "Buy Milk", id: crypto.randomUUID() },
+    { data: "Buy Bread", id: crypto.randomUUID() },
+    { data: "Buy Butter", id: crypto.randomUUID() },
   ]);
   const [inputText, setInputText] = useState("");
 
@@ -22,15 +22,10 @@ function Todo(props) {
     setTodoItems(updatedTodos);
   }
 
-  function generateId(todoItems) {
-    if (todoItems.length === 0) return 1;
-    return todoItems[todoItems.length - 1].id + 1;
-  }
-
   function addNewToDo(inputText) {
     if (inputText === "") return;
-    let newTodo = { data: inputText, id: generateId(todoItems) };
-    setTodoItems([...todoItems, newTodo]);
+    let newTodo = { data: inputText, id: crypto.randomUUID() };
+    setTodoItems([newTodo, ...todoItems]);
     setInputText("");
   }
 

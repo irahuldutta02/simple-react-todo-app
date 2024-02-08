@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 function TodoItem(props) {
-  const [isEditting, setIsEditting] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [todoData, setTodoData] = useState(props.todo.data);
   return (
     <li className="todo-item">
       <div className="todo-data">
-        {isEditting ? (
+        {isEditing ? (
           <input
             type="text"
             value={todoData}
@@ -14,27 +14,29 @@ function TodoItem(props) {
           />
         ) : (
           <span className="todo-data-text">
-            {props.todo.id} : {props.todo.data}
+            {props.todo.data}
           </span>
         )}
       </div>
 
       <div className="btnSDiv">
-        <button
-          onClick={() => {
-            props.delete();
-          }}
-        >
-          Done
-        </button>
+        {!isEditing && (
+          <button
+            onClick={() => {
+              props.delete();
+            }}
+          >
+            Done
+          </button>
+        )}
 
         <button
           onClick={() => {
-            setIsEditting(!isEditting);
-            isEditting && props.edit(todoData);
+            setIsEditing(!isEditing);
+            isEditing && props.edit(todoData);
           }}
         >
-          {isEditting ? "Save" : "Edit"}
+          {isEditing ? "Save" : "Edit"}
         </button>
       </div>
     </li>
