@@ -11,11 +11,15 @@ function TodoItem(props) {
             type="text"
             value={todoData}
             onChange={(e) => setTodoData(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setIsEditing(false);
+                props.edit(todoData);
+              }
+            }}
           />
         ) : (
-          <span className="todo-data-text">
-            {props.todo.data}
-          </span>
+          <span className="todo-data-text">{props.todo.data}</span>
         )}
       </div>
 

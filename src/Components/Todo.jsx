@@ -1,26 +1,31 @@
 import { useState } from "react";
 import TodoItem from "./TodoItem";
 import { useSelector, useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
 import { addToDo, deleteToDo, editToDo } from "../actions/actions";
 
 function Todo() {
   const todoItems = useSelector((state) => state.todos);
   const dispatch = useDispatch();
+  const actions = bindActionCreators(
+    { addToDo, deleteToDo, editToDo },
+    dispatch
+  );
 
   const [inputText, setInputText] = useState("");
 
   function deleteTodo(id) {
-    dispatch(deleteToDo(id));
+    actions.deleteToDo(id);
   }
 
   function editTodo(id, newTodoData) {
-    dispatch(editToDo(id, newTodoData));
+    actions.editToDo(id, newTodoData);
   }
 
   function addNewToDo(inputText) {
     if (inputText === "") return;
     let newTodo = { data: inputText, id: crypto.randomUUID() };
-    dispatch(addToDo(newTodo));
+    actions.addToDo(newTodo);
     setInputText("");
   }
 
