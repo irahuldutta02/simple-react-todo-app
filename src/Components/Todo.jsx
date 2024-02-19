@@ -1,31 +1,30 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import TodoItem from "./TodoItem";
-import { useSelector, useDispatch } from "react-redux";
-import { bindActionCreators } from "redux";
-import { addToDo, deleteToDo, editToDo } from "../actions/actions";
+import { useDispatch } from "react-redux";
+import { todoSlice } from "../slices/TodoSlice";
 
 function Todo() {
-  const todoItems = useSelector((state) => state.todos);
-  const dispatch = useDispatch();
-  const actions = bindActionCreators(
-    { addToDo, deleteToDo, editToDo },
-    dispatch
-  );
+  const todoItems = useSelector((state) => state.todos.value);
+
+  const { addTodo, deleteTodo, editTodo } = todoSlice.actions;
 
   const [inputText, setInputText] = useState("");
 
-  function deleteTodo(id) {
-    actions.deleteToDo(id);
+  const dispatch = useDispatch();
+
+  function handleDeleteTodo(id) {
+    dispatch(deleteTodo(id));
   }
 
-  function editTodo(id, newTodoData) {
-    actions.editToDo(id, newTodoData);
+  function handleEditTodo(id, newTodoData) {
+    dispatch(editTodo({ id: id, data: newTodoData }));
   }
 
-  function addNewToDo(inputText) {
+  function handleAddTodo(inputText) {
     if (inputText === "") return;
     let newTodo = { data: inputText, id: crypto.randomUUID() };
-    actions.addToDo(newTodo);
+    dispatch(addTodo(newTodo));
     setInputText("");
   }
 
@@ -40,18 +39,18 @@ function Todo() {
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") addNewToDo(inputText);
+            if (e.key === "Enter") handleAddTodo(inputText);
           }}
         />
-        <button onClick={() => addNewToDo(inputText)}>Add ToDo</button>
+        <button onClick={() => handleAddTodo(inputText)}>Add ToDo</button>
       </div>
       <ul className="todo-list">
         {todoItems.map((todo) => (
           <TodoItem
             todo={todo}
             key={todo.id}
-            delete={() => deleteTodo(todo.id)}
-            edit={(newTodoData) => editTodo(todo.id, newTodoData)}
+            delete={() => handleDeleteTodo(todo.id)}
+            edit={(newTodoData) => handleEditTodo(todo.id, newTodoData)}
           />
         ))}
       </ul>

@@ -95,7 +95,27 @@ body {
 }
 
 .todo-data {
-  height: 3rem;
+  min-height: 3rem;
+  overflow-x: auto;
+}
+
+.todo-data::-webkit-scrollbar {
+  width: 5px; /* Set the width of the scrollbar */
+  height: 5px; /* Set the height of the scrollbar */
+}
+
+.todo-data::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f1f1f1; /* Set the background color of the scrollbar track */
+}
+
+.todo-data::-webkit-scrollbar-thumb {
+  background-color: #888; /* Set the color of the scrollbar thumb */
+  border-radius: 10px; /* Set the border radius of the scrollbar thumb */
+}
+
+.todo-data::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Set the color of the scrollbar thumb on hover */
 }
 
 .todo-data input {
