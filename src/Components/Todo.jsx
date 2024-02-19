@@ -7,19 +7,11 @@ import { todoSlice } from "../slices/TodoSlice";
 function Todo() {
   const todoItems = useSelector((state) => state.todos.value);
 
-  const { addTodo, deleteTodo, editTodo } = todoSlice.actions;
+  const { addTodo } = todoSlice.actions;
 
   const [inputText, setInputText] = useState("");
 
   const dispatch = useDispatch();
-
-  function handleDeleteTodo(id) {
-    dispatch(deleteTodo(id));
-  }
-
-  function handleEditTodo(id, newTodoData) {
-    dispatch(editTodo({ id: id, data: newTodoData }));
-  }
 
   function handleAddTodo(inputText) {
     if (inputText === "") return;
@@ -46,12 +38,7 @@ function Todo() {
       </div>
       <ul className="todo-list">
         {todoItems.map((todo) => (
-          <TodoItem
-            todo={todo}
-            key={todo.id}
-            delete={() => handleDeleteTodo(todo.id)}
-            edit={(newTodoData) => handleEditTodo(todo.id, newTodoData)}
-          />
+          <TodoItem todo={todo} key={todo.id} />
         ))}
       </ul>
     </div>

@@ -1,8 +1,23 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { todoSlice } from "../slices/TodoSlice";
 
-function TodoItem(props) {
+function TodoItem({ todo }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [todoData, setTodoData] = useState(props.todo.data);
+  const [todoData, setTodoData] = useState(todo.data);
+
+  const { deleteTodo, editTodo } = todoSlice.actions;
+
+  const dispatch = useDispatch();
+
+  function handleDeleteTodo(id) {
+    dispatch(deleteTodo(id));
+  }
+
+  function handleEditTodo(id, newTodoData) {
+    dispatch(editTodo({ id: id, data: newTodoData }));
+  }
+
   return (
     <li className="todo-item">
       <div className="todo-data">
@@ -14,12 +29,12 @@ function TodoItem(props) {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 setIsEditing(false);
-                props.edit(todoData);
+                handleEditTodo(todo.id, todoData);
               }
             }}
           />
         ) : (
-          <span className="todo-data-text">{props.todo.data}</span>
+          <span className="todo-data-text">{todo.data}</span>
         )}
       </div>
 
@@ -27,7 +42,7 @@ function TodoItem(props) {
         {!isEditing && (
           <button
             onClick={() => {
-              props.delete();
+              handleDeleteTodo(todo.id);
             }}
           >
             Done
@@ -37,7 +52,7 @@ function TodoItem(props) {
         <button
           onClick={() => {
             setIsEditing(!isEditing);
-            isEditing && props.edit(todoData);
+            isEditing && handleEditTodo(todo.id, todoData);
           }}
         >
           {isEditing ? "Save" : "Edit"}
